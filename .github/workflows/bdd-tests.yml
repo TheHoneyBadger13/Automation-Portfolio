@@ -30,7 +30,9 @@ jobs:
 
       - name: Run Cucumber tests
         run: npm run test:feature
-        continue-on-error: true
+        env:
+          PLAYWRIGHT_HEADLESS: true
+          continue-on-error: true
 
       - name: Upload test reports
         if: always()

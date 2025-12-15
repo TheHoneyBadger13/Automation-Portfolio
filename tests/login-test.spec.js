@@ -4,9 +4,9 @@ const LoginPage = require('../pageObjects/LoginPage');
 
 test('has title', async ({ page }) => {
   const loginPage = new LoginPage(page);
-  await page.goto('https://opensource-demo.orangehrmlive.com');
+  await page.goto('https://www.saucedemo.com/');
 
   // Expect a title "to contain" a substring.
-  await expect(page).toHaveURL('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
-  await loginPage.login('Admin', 'admin123');
+  await expect(page).toHaveURL('https://www.saucedemo.com/');
+  await loginPage.login('standard_user', 'standard_user');
 });
