@@ -11,20 +11,15 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-    
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x]
-      fail-fast: false
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js 24.x
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 24.x
           cache: 'npm'
 
       - name: Install dependencies
@@ -41,7 +36,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: cucumber-reports-${{ matrix.node-version }}
+          name: cucumber-reports
           path: reports/
           retention-days: 30
 
@@ -49,7 +44,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: playwright-reports-${{ matrix.node-version }}
+          name: playwright-reports
           path: playwright-report/
           retention-days: 30
 
@@ -57,7 +52,7 @@ jobs:
         if: always()
         uses: dorny/test-reporter@v1
         with:
-          name: Test Results (${{ matrix.node-version }})
+          name: Test Results
           path: 'reports/cucumber-report.json'
           reporter: 'cucumber-json'
           fail-on-error: false
