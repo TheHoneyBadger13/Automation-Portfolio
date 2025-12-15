@@ -9,7 +9,7 @@ on:
     - cron: '0 9 * * *'  # Run daily at 9 AM UTC
 
 jobs:
-  test:
+  bdd-tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -56,5 +56,5 @@ jobs:
         with:
           name: Test Results
           path: 'reports/cucumber-report.json'
-          reporter: 'cucumber-json'
+          reporter: 'java-junit'
           fail-on-error: false

@@ -2,7 +2,7 @@
 import { test, expect } from '@playwright/test';
 const LoginPage = require('../pageObjects/LoginPage');
 
-test('has title', async ({ page }) => {
+test('SauceDemo login test', async ({ page }) => {
   const loginPage = new LoginPage(page);
   await page.goto('https://www.saucedemo.com/');
 
