@@ -3,7 +3,8 @@ const { chromium } = require('playwright');
 
 class CustomWorld extends World {
   async launchBrowser() {
-    this.browser = await chromium.launch({ headless: false });
+    const isHeadless = process.env.PLAYWRIGHT_HEADLESS === 'true' || process.env.PLAYWRIGHT_HEADLESS === true;
+    this.browser = await chromium.launch({ headless: isHeadless });
     this.context = await this.browser.newContext();
     this.page = await this.context.newPage();
   }

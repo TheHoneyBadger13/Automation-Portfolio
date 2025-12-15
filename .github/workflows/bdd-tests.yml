@@ -49,12 +49,3 @@ jobs:
           name: playwright-reports
           path: playwright-report/
           retention-days: 30
-
-      - name: Publish test results
-        if: always()
-        uses: dorny/test-reporter@v1
-        with:
-          name: Test Results
-          path: 'reports/cucumber-report.json'
-          reporter: 'java-junit'
-          fail-on-error: false
