@@ -7,10 +7,10 @@ Feature: SauceDemo Login
   Then the user is redirected to the inventory page
 
   Examples:
-  | username      | password      |
-  | standard_user | standard_user |
-  | problem_user  | secret_sauce  |
-  | visual_user   | secret_sauce  |
+  | username      | password     |
+  | standard_user | secret_sauce |
+  | problem_user  | secret_sauce |
+  | visual_user   | secret_sauce |
 
 
  Scenario Outline: Successful login using standard user

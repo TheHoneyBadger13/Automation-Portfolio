@@ -1,12 +1,15 @@
 name: Playwright Cucumber Tests
 
+run-name: ${{ github.event_name == 'schedule' && 'schedule run' || 'Playwright Cucumber Tests' }}
+
 on:
   push:
     branches: [ main, develop ]
   pull_request:
     branches: [ main, develop ]
   schedule:
-    - cron: '0 9 * * *'  # Run daily at 9 AM UTC
+    - cron: '35 8 * * *'  # Run daily at 4:35 PM Philippines time (UTC+8)
+  workflow_dispatch:
 
 jobs:
   bdd-tests:
