@@ -36,7 +36,9 @@ jobs:
       - name: Run Cucumber tests
         run: npm run test:feature
         env:
-          PLAYWRIGHT_HEADLESS: true
+          PLAYWRIGHT_HEADLESS: "true"
+          BROWSER_NAME: "chromium"
+          PLATFORM_NAME: ${{ runner.os }}
         continue-on-error: true
 
       - name: Upload all reports
@@ -45,6 +47,5 @@ jobs:
         with:
           name: Cucumber(BDD) Report
           path: |
-            reports/
-            playwright-report/
+            reports/html/
           retention-days: 30
