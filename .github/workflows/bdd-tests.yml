@@ -1,6 +1,6 @@
 name: Playwright Cucumber Tests
 
-run-name: ${{ github.event_name == 'schedule' && 'schedule run' || 'Playwright Cucumber Tests' }}
+run-name: ${{ github.event_name == 'schedule' && 'schedule run' || 'Playwright Cucumber(BDD) Tests' }}
 
 on:
   push:

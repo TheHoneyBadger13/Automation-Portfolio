@@ -1,4 +1,7 @@
 name: Playwright Tests
+
+run-name: ${{ github.event_name == 'schedule' && 'schedule run' || 'Playwright Tests' }}
+
 on:
   push:
     branches: [ main, master ]
