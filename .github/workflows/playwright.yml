@@ -48,8 +48,8 @@ jobs:
       if: always()
       run: |
         mkdir -p temp_deploy
-        cp index.html temp_deploy/
-        cp *.png temp_deploy/ || true
+        cp portfolio-ui/index.html temp_deploy/
+        cp portfolio-ui/*.png temp_deploy/ || true
         cp -r playwright-report/. temp_deploy/playwright/ || echo "Playwright report not found"
 
     - name: Deploy to Github Pages

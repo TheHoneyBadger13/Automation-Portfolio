@@ -71,8 +71,8 @@ jobs:
         if: always()
         run: |
           mkdir -p temp_deploy
-          cp index.html temp_deploy/
-          cp *.png temp_deploy/ || true
+          cp portfolio-ui/index.html temp_deploy/
+          cp portfolio-ui/*.png temp_deploy/ || true
           cp -r allure-report/. temp_deploy/allure/ || echo "Allure report not found"
 
       - name: Deploy report to Github Pages
