@@ -17,3 +17,16 @@ allure-report/
 # OS Files
 .DS_Store
 Thumbs.db
+
+# Test results and reports
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+allure-results/
+allure-report/
+jmeter-dashboard/
+temp_deploy/
+
+# Performance results (if you don't want to keep the .jtl in main)
+# results.jtl
