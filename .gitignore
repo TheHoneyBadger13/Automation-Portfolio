@@ -2,31 +2,25 @@
 node_modules/
 
 # Playwright
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-/playwright/.auth/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+playwright/.auth/
 
-# Cucumber & Allure (Add these)
+# Cucumber & Allure
 reports/
 screenshots/
 allure-results/
 allure-report/
 
-# OS Files
+# JMeter & Performance
+jmeter/
+jmeter-dashboard/
+apache-jmeter-*/
+# results.jtl  <-- Keep this commented out so the workflow can find your data file
+
+# Deployment & OS
+temp_deploy/
 .DS_Store
 Thumbs.db
-
-# Test results and reports
-test-results/
-playwright-report/
-blob-report/
-playwright/.cache/
-allure-results/
-allure-report/
-jmeter-dashboard/
-temp_deploy/
-
-# Performance results (if you don't want to keep the .jtl in main)
-# results.jtl

@@ -1,5 +1,0 @@
-timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
-1766231871421,24,Login Page,200,OK,Thread Group 1-1,text,true,,2352,238,1,1,https://www.saucedemo.com/,8,0,4
-1766231871421,8,Login Page-0,301,Moved Permanently,Thread Group 1-1,text,true,,653,119,1,1,http://www.saucedemo.com/,8,0,4
-1766231871430,15,Login Page-1,200,OK,Thread Group 1-1,text,true,,1699,119,1,1,https://www.saucedemo.com/,15,0,11
-1766231871446,8,Logging in,405,Method Not Allowed,Thread Group 1-1,,false,,480,263,1,1,http://www.saucedemo.com/inventory.html,8,0,0

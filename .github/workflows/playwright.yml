@@ -43,7 +43,14 @@ jobs:
       env:
         PLAYWRIGHT_HEADLESS: "true"
 
-    # --- NEW JMETER GENERATION STEPS ---
+    - name: Setup Modern JMeter
+      run: |
+        # Download JMeter 5.6.3 (Latest stable version)
+        wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.6.3.tgz
+        tar -xzf apache-jmeter-5.6.3.tgz
+        # Add JMeter to the PATH
+        echo "$(pwd)/apache-jmeter-5.6.3/bin" >> $GITHUB_PATH  
+
     - name: Setup JMeter
       run: |
         sudo apt-get update
@@ -52,10 +59,9 @@ jobs:
     - name: Generate JMeter HTML Report
       run: |
         mkdir -p jmeter-dashboard
-        # This uses your existing .jtl file inside portfolio-ui/
-        jmeter -g portfolio-ui/results.jtl -o jmeter-dashboard/ || echo "JMeter results file not found"
+        # Use the full path to the freshly installed jmeter to be safe
+        ./apache-jmeter-5.6.3/bin/jmeter -g portfolio-ui/results.jtl -o jmeter-dashboard/ || echo "JMeter results file not found"
 
-    # --- UPDATED PORTFOLIO DEPLOYMENT ---
     - name: Prepare Portfolio Deployment
       if: always()
       run: |
