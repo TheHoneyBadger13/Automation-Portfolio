@@ -1,0 +1,10 @@
+# Exclude auto-generated reports from language statistics
+reports/** linguist-documentation
+allure-results/** linguist-documentation
+allure-report/** linguist-documentation
+playwright-report/** linguist-documentation
+test-results/** linguist-documentation
+
+# Ensure TypeScript/JavaScript is recognized as the main language
+*.ts linguist-detectable=true
+*.js linguist-detectable=true

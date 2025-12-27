@@ -1,8 +1,19 @@
+# Dependencies
+node_modules/
 
 # Playwright
-node_modules/
 /test-results/
 /playwright-report/
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+# Cucumber & Allure (Add these)
+reports/
+screenshots/
+allure-results/
+allure-report/
+
+# OS Files
+.DS_Store
+Thumbs.db
