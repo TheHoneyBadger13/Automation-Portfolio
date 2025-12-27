@@ -114,7 +114,8 @@
         .tech-list { list-style: none; padding: 0; margin: 0; }
         .tech-list li { padding: 8px 0; border-bottom: 1px solid #f1f5f9; color: #1e40af; font-size: 14px; display: flex; align-items: center; gap: 8px; }
 
-        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 10px; width: 100%; box-sizing: border-box; color: white; }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: 600; margin-top: 10px; width: 100%; box-sizing: border-box; color: white; transition: opacity 0.2s; }
+        .btn:hover { opacity: 0.9; }
         .btn-allure { background: #f97316; }
         .btn-playwright { background: #10b981; }
         .btn-jmeter { background: #ef4444; }
@@ -139,13 +140,12 @@
             nav a { padding: 15px 20px; font-size: 14px; border-left: none; }
             nav a.active { border-left: none; border-bottom: 3px solid var(--accent); }
 
-            /* Navigation Scroll Overlays/Buttons */
             .nav-btn {
                 display: flex;
                 position: fixed;
                 top: 0;
                 width: 50px;
-                height: 52px; /* Match nav height */
+                height: 52px;
                 z-index: 101;
                 align-items: center;
                 justify-content: center;
@@ -153,21 +153,14 @@
                 cursor: pointer;
                 border: none;
                 transition: opacity 0.3s;
-                opacity: 0; /* Hidden until scroll is needed */
+                opacity: 0;
                 pointer-events: none;
             }
 
             .nav-btn.visible { opacity: 1; pointer-events: auto; }
 
-            .nav-left {
-                left: 0;
-                background: linear-gradient(to right, #1e293b 70%, transparent);
-            }
-
-            .nav-right {
-                right: 0;
-                background: linear-gradient(to left, #1e293b 70%, transparent);
-            }
+            .nav-left { left: 0; background: linear-gradient(to right, #1e293b 70%, transparent); }
+            .nav-right { right: 0; background: linear-gradient(to left, #1e293b 70%, transparent); }
             
             main { margin-left: 0; padding: 20px; width: 100%; }
             .dashboard-grid { grid-template-columns: 1fr; }
@@ -187,15 +180,15 @@
 <nav id="mobile-nav">
     <h2>QA DASHBOARD</h2>
     <a href="#" class="active"><i class="fa-solid fa-house"></i> Overview</a>
-    <a href="./allure/" target="_blank"><i class="fa-solid fa-chart-line"></i> Allure</a>
-    <a href="./playwright/" target="_blank"><i class="fa-solid fa-vial"></i> Playwright</a>
-    <a href="./jmeter/" target="_blank"><i class="fa-solid fa-gauge-high"></i> JMeter</a>
+    <a href="../allure/" target="_blank"><i class="fa-solid fa-chart-line"></i> Allure Hub</a>
+    <a href="../playwright/" target="_blank"><i class="fa-solid fa-vial"></i> Playwright UI</a>
+    <a href="../jmeter/" target="_blank"><i class="fa-solid fa-gauge-high"></i> Performance</a>
 </nav>
 
 <main>
     <div style="margin-bottom: 30px;">
         <h1>Senior QA Automation Portfolio</h1>
-        <p>Advanced Test Engineering & CI/CD Optimization.</p>
+        <p>Unified Functional & Performance Test Reporting Ecosystem.</p>
     </div>
 
     <div class="dashboard-grid">
@@ -211,7 +204,7 @@
                 
                 <div class="contact-box">
                     <a href="https://www.linkedin.com/in/jerome-san-juan-7b37a4121/" target="_blank" class="contact-link link-linkedin"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                    <a href="https://github.com/TheHoneyBadger13" target="_blank" class="contact-link link-github"><i class="fa-brands fa-github"></i> GitHub</a>
+                    <a href="https://github.com/TheHoneyBadger13/Automation-Portfolio" target="_blank" class="contact-link link-github"><i class="fa-brands fa-github"></i> GitHub</a>
                     <div style="display: flex; align-items: center; gap: 8px;">
                         <a href="mailto:romsj13@gmail.com" class="contact-link link-gmail"><i class="fa-solid fa-envelope"></i> romsj13@gmail.com</a>
                         <button class="copy-btn" onclick="copyEmail()"><i class="fa-solid fa-copy"></i> Copy</button>
@@ -220,11 +213,11 @@
             </div>
 
             <div class="card">
-                <h3 class="section-header"><i class="fa-solid fa-magnifying-glass-chart"></i> Project Overview</h3>
+                <h3 class="section-header"><i class="fa-solid fa-magnifying-glass-chart"></i> Project Scope</h3>
                 <ul style="padding-left: 20px; font-size: 14px;">
-                    <li style="margin-bottom: 10px;"><strong>Standard Playwright:</strong> UI automation targeting the SauceDemo site using POM and TypeScript.</li>
-                    <li style="margin-bottom: 10px;"><strong>BDD Playwright:</strong> Behavior-driven development using Cucumber (Gherkin) for stakeholder readability.</li>
-                    <li><strong>Performance Testing:</strong> JMeter test suite for the Restful-Booker API to measure system bottlenecks.</li>
+                    <li style="margin-bottom: 10px;"><strong>Playwright Framework:</strong> Scalable UI automation using Page Object Model (POM) and TypeScript.</li>
+                    <li style="margin-bottom: 10px;"><strong>BDD Integration:</strong> Behavior-driven scenarios with Cucumber for enhanced stakeholder visibility.</li>
+                    <li><strong>Performance Engineering:</strong> Load/Stress testing for Restful-Booker API using JMeter.</li>
                 </ul>
             </div>
 
@@ -256,17 +249,17 @@
                 <h3 class="section-header" style="color: #1e40af;"><i class="fa-solid fa-microchip"></i> Tech Stack</h3>
                 <ul class="tech-list">
                     <li><i class="fa-solid fa-check-circle"></i> Playwright + TypeScript</li>
-                    <li><i class="fa-solid fa-check-circle"></i> Cucumber (Gherkin)</li>
+                    <li><i class="fa-solid fa-check-circle"></i> Cucumber (BDD)</li>
                     <li><i class="fa-solid fa-check-circle"></i> GitHub Actions (CI/CD)</li>
                     <li><i class="fa-solid fa-check-circle"></i> JMeter (Performance)</li>
                 </ul>
             </div>
 
             <div class="card">
-                <h3 class="section-header"><i class="fa-solid fa-square-poll-vertical"></i> Live Reports</h3>
-                <a href="./allure/" target="_blank" class="btn btn-allure"><i class="fa-solid fa-bolt"></i> Allure Report</a>
-                <a href="./playwright/" target="_blank" class="btn btn-playwright"><i class="fa-solid fa-display"></i> Playwright HTML</a>
-                <a href="./jmeter/" target="_blank" class="btn btn-jmeter"><i class="fa-solid fa-gauge-simple-high"></i> JMeter Dashboard</a>
+                <h3 class="section-header"><i class="fa-solid fa-square-poll-vertical"></i> Reporting Ecosystem</h3>
+                <a href="../allure/" target="_blank" class="btn btn-allure"><i class="fa-solid fa-bolt"></i> Allure Results</a>
+                <a href="../playwright/" target="_blank" class="btn btn-playwright"><i class="fa-solid fa-display"></i> Playwright HTML</a>
+                <a href="../jmeter/" target="_blank" class="btn btn-jmeter"><i class="fa-solid fa-gauge-simple-high"></i> Performance Dashboard</a>
             </div>
 
             <div class="card">
@@ -299,14 +292,12 @@
         const scrollLeft = navBar.scrollLeft;
         const maxScroll = navBar.scrollWidth - navBar.clientWidth;
 
-        // Show left button if we've scrolled right at all
         if (scrollLeft > 10) {
             btnLeft.classList.add('visible');
         } else {
             btnLeft.classList.remove('visible');
         }
 
-        // Show right button if there is more content to the right
         if (scrollLeft < maxScroll - 10) {
             btnRight.classList.add('visible');
         } else {
@@ -316,7 +307,6 @@
 
     navBar.addEventListener('scroll', toggleScrollBtns);
     window.addEventListener('resize', toggleScrollBtns);
-    // Run once on load
     setTimeout(toggleScrollBtns, 500);
 
     // --- CAROUSEL LOGIC ---
