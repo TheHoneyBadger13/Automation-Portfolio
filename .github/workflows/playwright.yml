@@ -43,18 +43,15 @@ jobs:
       env:
         PLAYWRIGHT_HEADLESS: "true"
 
-    - name: Setup Modern JMeter
+    - name: Download and Setup JMeter
       run: |
-        # Download JMeter 5.6.3 (Latest stable version)
-        wget https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.6.3.tgz
+        # Use a more reliable mirror and add retry logic
+        wget --tries=3 --waitretry=5 https://dlcdn.apache.org/jmeter/binaries/apache-jmeter-5.6.3.tgz || \
+        wget --tries=2 https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.6.3.tgz
+        
         tar -xzf apache-jmeter-5.6.3.tgz
-        # Add JMeter to the PATH
-        echo "$(pwd)/apache-jmeter-5.6.3/bin" >> $GITHUB_PATH  
-
-    - name: Setup JMeter
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y jmeter
+        echo "JMETER_HOME=$(pwd)/apache-jmeter-5.6.3" >> $GITHUB_ENV
+        echo "$(pwd)/apache-jmeter-5.6.3/bin" >> $GITHUB_PATH 
 
     - name: Generate JMeter HTML Report
       run: |
