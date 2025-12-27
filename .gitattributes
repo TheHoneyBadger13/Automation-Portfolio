@@ -1,13 +1,7 @@
-# Exclude auto-generated reports from language statistics
-reports/** linguist-documentation=true
-allure-results/** linguist-documentation=true
-allure-report/** linguist-documentation=true
-playwright-report/** linguist-documentation=true
-test-results/** linguist-documentation=true
-jmeter/** linguist-documentation=true
-jmeter-dashboard/** linguist-documentation=true
-portfolio-ui/index.html linguist-documentation=true
+# Mark UI folders as 'vendored' (ignored by stats)
+portfolio-ui/** linguist-vendored
+jmeter/HTML_Report/** linguist-vendored
 
-# Ensure TypeScript/JavaScript is recognized as the main language
-*.ts linguist-detectable=true
-*.js linguist-detectable=true
+# Ensure your actual code is detectable
+**/*.ts linguist-detectable
+**/*.jmx linguist-detectable
