@@ -66,6 +66,9 @@ jobs:
         # 1. Copy Portfolio UI base files
         cp portfolio-ui/index.html temp_deploy/
         cp portfolio-ui/*.png temp_deploy/ || true
+
+        # This checks both lowercase 'scripts' and 'Scripts' just in case
+        cp portfolio-ui/scripts/test-data.js temp_deploy/ || cp portfolio-ui/Scripts/test-data.js temp_deploy/ || echo "test-data.js not found"
         
         # 2. Copy Playwright report
         cp -r playwright-report/. temp_deploy/playwright/ || echo "Playwright report not found"
