@@ -200,9 +200,9 @@
     <h2>QA DASHBOARD</h2>
     <a onclick="switchView('overview')" id="nav-overview" class="active"><i class="fa-solid fa-house"></i> Overview</a>
     <a onclick="switchView('matrix')" id="nav-matrix"><i class="fa-solid fa-table-columns"></i> Test Matrix</a>
-    <a href="../allure/" target="_blank"><i class="fa-solid fa-chart-line"></i> Allure Hub</a>
-    <a href="../playwright/" target="_blank"><i class="fa-solid fa-vial"></i> Playwright UI</a>
-    <a href="../jmeter/" target="_blank"><i class="fa-solid fa-gauge-high"></i> Performance</a>
+    <a href="./allure/" target="_blank"><i class="fa-solid fa-chart-line"></i> Allure Hub</a>
+    <a href="./playwright/" target="_blank"><i class="fa-solid fa-vial"></i> Playwright UI</a>
+    <a href="./jmeter/" target="_blank"><i class="fa-solid fa-gauge-high"></i> Performance</a>
 </nav>
 
 <main>
@@ -362,7 +362,7 @@
     </div>
 </main>
 
-<script src="scripts/testData.js"></script>
+<script src="./scripts/testData.js"></script>
 <script>
     function switchView(viewName) {
         document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active-view'));
