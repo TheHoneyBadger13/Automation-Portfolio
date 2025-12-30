@@ -14,5 +14,9 @@ To run a specific feature file:
 
 To run non-BDD test cases
 1. Open terminal either by clicking Terminal then selecting new terminal, or by pressing Ctrl + Shift + `
-2. Run this command and replace the name of the test file 'npx playwright test #NameOfTheTestFile.js'
+2. Run this command and replace the name of the test file 'npx playwright test #NameOfTheTestFile.ts'
+    note: can add --headed to run it in headed mode
 3. To generate playwright (Non-BDD) report run this command 'npx playwright show-report'
+
+To run playwright test runner
+1. Run this command 'npx playwright test --ui'

@@ -6,7 +6,7 @@
   "scripts": {
     "// --- BDD / Cucumber Scripts ---": "",
     "pretest:feature": "rimraf reports/ screenshots/ allure-results/",
-    "test:feature": "cucumber-js || true",
+    "test:feature": "cucumber-js features/**/*.feature --require-module ts-node/register --require world.ts --require stepDefinitions/**/*.ts",
     "posttest:feature": "",
     "// --- Allure Reporting ---": "",
     "allure:generate": "allure generate allure-results --clean -o allure-report",
