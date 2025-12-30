@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>QA Portfolio | Jerome San Juan</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -30,7 +30,7 @@
             line-height: 1.6; 
         }
 
-        /* --- NAVIGATION --- */
+        /* --- NAVIGATION (Desktop) --- */
         nav {
             width: var(--sidebar-width);
             background: var(--sidebar-color);
@@ -59,6 +59,9 @@
 
         nav a:hover, nav a.active { background: #334155; color: white; border-left: 4px solid var(--accent); }
 
+        /* Mobile Nav Scroll Button */
+        .nav-scroll-btn { display: none; }
+
         /* --- MAIN LAYOUT --- */
         main { 
             margin-left: var(--sidebar-width); 
@@ -79,6 +82,67 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
             margin-bottom: 25px; 
             border: 1px solid #e2e8f0; 
+            position: relative; /* Essential for the shadow/fade hint */
+            overflow: hidden;
+        }
+
+        /* --- SCROLLBAR ON TOP LOGIC --- */
+        .top-scroll-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            height: 12px; /* Container for the top scrollbar */
+            margin-bottom: 5px;
+        }
+
+        .top-scroll-content {
+            height: 1px; /* Dummy height to force scrollbar appearance */
+        }
+
+        .matrix-container {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            /* Hide the original bottom scrollbar but keep functionality */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        .matrix-container::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+
+        /* Custom Scrollbar Styling for the Top Bar */
+        .top-scroll-wrapper::-webkit-scrollbar {
+            height: 8px;
+        }
+        .top-scroll-wrapper::-webkit-scrollbar-track {
+            background: #f1f5f9;
+            border-radius: 10px;
+        }
+        .top-scroll-wrapper::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 10px;
+        }
+        .top-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
+        }
+
+        /* Visual "fade/shadow" hint */
+        .scroll-hint::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50px;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0), rgba(255,255,255,0.9));
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+
+        .scroll-hint.is-scrolled-end::after {
+            opacity: 0;
         }
 
         /* --- FEATURE HIGHLIGHTS GRID --- */
@@ -160,7 +224,7 @@
 
         /* --- TABLES & TECH --- */
         table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th { text-align: left; padding: 12px; background: #f1f5f9; font-size: 13px; }
+        th { text-align: left; padding: 12px; background: #f1f5f9; font-size: 13px; white-space: nowrap; }
         td { padding: 12px; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
         
         .status-pill { padding: 4px 10px; border-radius: 20px; font-size: 10px; font-weight: 700; text-transform: uppercase; }
@@ -180,23 +244,83 @@
             cursor: pointer; font-size: 12px; 
             display: flex; align-items: center; gap: 5px; 
             transition: 0.2s;
+            white-space: nowrap;
         }
         .video-btn:hover { background: var(--accent); }
 
+        /* --- MOBILE VIEW OVERRIDES --- */
         @media (max-width: 992px) {
-            body { flex-direction: column; }
-            nav { width: 100%; height: auto; position: sticky; top: 0; flex-direction: row; padding: 0; overflow-x: auto; white-space: nowrap; background: #1e293b; }
+            body { 
+                flex-direction: column; 
+                overflow-x: hidden; 
+            }
+            
+            nav { 
+                width: 100%; 
+                height: auto; 
+                position: sticky; 
+                top: 0; 
+                flex-direction: row; 
+                padding: 0; 
+                overflow-x: auto; 
+                white-space: nowrap; 
+                background: #1e293b; 
+                scrollbar-width: none; 
+            }
+            nav::-webkit-scrollbar { display: none; }
+            
+            .nav-scroll-btn {
+                display: flex;
+                position: fixed;
+                top: 0;
+                height: 54px;
+                width: 45px;
+                color: white;
+                align-items: center;
+                justify-content: center;
+                z-index: 101;
+                cursor: pointer;
+                border: none;
+                transition: background 0.3s;
+            }
+
+            .nav-scroll-right {
+                right: 0;
+                background: linear-gradient(to right, rgba(30, 41, 59, 0) 0%, rgba(30, 41, 59, 0.9) 60%);
+            }
+
+            .nav-scroll-left {
+                left: 0;
+                right: auto;
+                background: linear-gradient(to left, rgba(30, 41, 59, 0) 0%, rgba(30, 41, 59, 0.9) 60%);
+            }
+
             nav h2 { display: none; }
             nav a { padding: 15px 20px; font-size: 14px; border-left: none; }
             nav a.active { border-left: none; border-bottom: 3px solid var(--accent); }
-            main { margin-left: 0; padding: 20px; width: 100%; }
+            
+            main { 
+                margin-left: 0; 
+                padding: 20px; 
+                width: 100%; 
+                overflow-x: hidden; 
+            }
+            
             .dashboard-grid { grid-template-columns: 1fr; }
+
+            #full-matrix-table {
+                min-width: 700px; /* Ensure table causes horizontal scroll */
+            }
         }
     </style>
 </head>
 <body>
 
-<nav id="mobile-nav">
+<button class="nav-scroll-btn nav-scroll-right" id="nav-arrow-btn" onclick="scrollNav()">
+    <i class="fa-solid fa-chevron-right"></i>
+</button>
+
+<nav id="mobile-nav" onscroll="checkNavScroll()">
     <h2>QA DASHBOARD</h2>
     <a onclick="switchView('overview')" id="nav-overview" class="active"><i class="fa-solid fa-house"></i> Overview</a>
     <a onclick="switchView('matrix')" id="nav-matrix"><i class="fa-solid fa-table-columns"></i> Test Matrix</a>
@@ -238,7 +362,6 @@
 
                 <div class="card">
                     <h3 class="section-header"><i class="fa-solid fa-wand-magic-sparkles"></i> What this portfolio showcases</h3>
-                    <p>A demonstration of production-ready QA infrastructure focused on transparency and technical depth.</p>
                     <div class="showcase-grid">
                         <div class="showcase-item">
                             <i class="fa-solid fa-table-list"></i>
@@ -329,7 +452,7 @@
     </div>
 
     <div id="matrix-view" class="view-section">
-        <div style="margin-bottom: 30px; display: flex; justify-content: space-between; align-items: flex-end;">
+        <div style="margin-bottom: 30px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 15px;">
             <div>
                 <h1><i class="fa-solid fa-table-list"></i> Test Traceability Matrix</h1>
                 <p>Comprehensive list of test scenarios and their automation status.</p>
@@ -345,31 +468,98 @@
             </div>
         </div>
 
-        <div class="card">
-            <table id="full-matrix-table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Priority</th>
-                        <th>Test Scenario</th>
-                        <th>Status</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+        <div class="card scroll-hint" id="matrix-card">
+            <div class="top-scroll-wrapper" id="top-scroll-wrapper">
+                <div class="top-scroll-content" id="top-scroll-content"></div>
+            </div>
+
+            <div class="matrix-container" id="matrix-scroll-container">
+                <table id="full-matrix-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Priority</th>
+                            <th>Test Scenario</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
         </div>
     </div>
 </main>
 
 <script src="test-data.js"></script>
 <script>
+    const nav = document.getElementById('mobile-nav');
+    const arrowBtn = document.getElementById('nav-arrow-btn');
+    const arrowIcon = arrowBtn.querySelector('i');
+
+    const matrixContainer = document.getElementById('matrix-scroll-container');
+    const matrixCard = document.getElementById('matrix-card');
+    const topScrollWrapper = document.getElementById('top-scroll-wrapper');
+    const topScrollContent = document.getElementById('top-scroll-content');
+    const matrixTable = document.getElementById('full-matrix-table');
+
+    /* --- Sync Scroll Bars --- */
+    if (matrixContainer && topScrollWrapper) {
+        // Sync Top -> Bottom
+        topScrollWrapper.onscroll = function() {
+            matrixContainer.scrollLeft = topScrollWrapper.scrollLeft;
+        };
+        // Sync Bottom -> Top
+        matrixContainer.onscroll = function() {
+            topScrollWrapper.scrollLeft = matrixContainer.scrollLeft;
+            
+            // Handle Scroll Hint (Fade effect)
+            const isAtEnd = matrixContainer.scrollLeft + matrixContainer.clientWidth >= matrixContainer.scrollWidth - 10;
+            if (isAtEnd) {
+                matrixCard.classList.add('is-scrolled-end');
+            } else {
+                matrixCard.classList.remove('is-scrolled-end');
+            }
+        };
+    }
+
+    // Adjust the dummy top scrollbar width based on table content
+    function updateScrollWidths() {
+        if (topScrollContent && matrixTable) {
+            topScrollContent.style.width = matrixTable.scrollWidth + "px";
+        }
+    }
+
+    function checkNavScroll() {
+        if (nav.scrollLeft + nav.clientWidth >= nav.scrollWidth - 15) {
+            arrowBtn.classList.remove('nav-scroll-right');
+            arrowBtn.classList.add('nav-scroll-left');
+            arrowIcon.className = "fa-solid fa-chevron-left";
+        } else {
+            arrowBtn.classList.remove('nav-scroll-left');
+            arrowBtn.classList.add('nav-scroll-right');
+            arrowIcon.className = "fa-solid fa-chevron-right";
+        }
+    }
+
+    function scrollNav() {
+        if (nav.scrollLeft + nav.clientWidth >= nav.scrollWidth - 15) {
+            nav.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+            nav.scrollTo({ left: nav.scrollWidth, behavior: 'smooth' });
+        }
+    }
+
     function switchView(viewName) {
         document.querySelectorAll('.view-section').forEach(v => v.classList.remove('active-view'));
         document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
         document.getElementById(viewName + '-view').classList.add('active-view');
         document.getElementById('nav-' + viewName).classList.add('active');
         window.scrollTo(0,0);
+        // Refresh scroll widths when switching to matrix view
+        if(viewName === 'matrix') {
+            setTimeout(updateScrollWidths, 100);
+        }
     }
 
     function openVideo(url) {
@@ -379,6 +569,8 @@
     function renderMatrix() {
         const summaryBody = document.querySelector('#summary-table tbody');
         const fullBody = document.querySelector('#full-matrix-table tbody');
+        if (!summaryBody || !fullBody) return;
+        
         summaryBody.innerHTML = ''; fullBody.innerHTML = '';
         let automatedCount = 0;
 
@@ -389,7 +581,7 @@
         const summaryData = testMatrixData.slice(0, 5);
         summaryData.forEach(test => {
             const statusClass = test.status.toLowerCase().replace('-', '');
-            summaryBody.innerHTML += `<tr><td>${test.scenario}</td><td><span class="status-pill status-${statusClass}">${test.status === 'Automated' ? 'Passed' : test.status}</span></td></tr>`;
+            summaryBody.innerHTML += `<tr><td>${test.scenario}</td><td><span class="status-pill status-${statusClass}">${test.status}</span></td></tr>`;
         });
 
         testMatrixData.forEach(test => {
@@ -413,6 +605,9 @@
         document.querySelectorAll('.coverage-bar').forEach(el => el.style.width = percentage + '%');
         document.querySelectorAll('.coverage-text').forEach(el => el.innerText = percentage + '% Automated');
         document.querySelectorAll('.coverage-count').forEach(el => el.innerText = automatedCount + ' of ' + testMatrixData.length);
+        
+        // Ensure scrollbar width is updated after rendering rows
+        setTimeout(updateScrollWidths, 100);
     }
 
     let slideIndex = 0;
@@ -438,6 +633,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', renderMatrix);
+    window.addEventListener('resize', updateScrollWidths);
 </script>
 </body>
 </html>
