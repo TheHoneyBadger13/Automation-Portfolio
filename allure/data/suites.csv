@@ -1,5 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","2170","Successful login with valid credentials","","Tue May 26 21:59:24 UTC 2026","passed","Tue May 26 21:59:26 UTC 2026","","","",""
-"","2086","Successful login using standard user","","Tue May 26 21:59:26 UTC 2026","passed","Tue May 26 21:59:28 UTC 2026","","","",""
-"","2032","Successful login with valid credentials","","Tue May 26 21:59:22 UTC 2026","passed","Tue May 26 21:59:24 UTC 2026","","","",""
-"","2397","Successful login with valid credentials","","Tue May 26 21:59:20 UTC 2026","passed","Tue May 26 21:59:22 UTC 2026","","","",""
